@@ -10,11 +10,11 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/epoll.h>
+#include "redparser.h"
 
 #define MAX_EVENTS 64
 
 int main(int argc, char **argv) {
-  // Flush after every std::cout / std::cerr
   std::cout << std::unitbuf;
   std::cerr << std::unitbuf;
 
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
             close(client);
         }
           else {
-           send(client,response,strlen(response),0);
+           send(client,parser(buf),strlen(response),0);
           }
 
         }
